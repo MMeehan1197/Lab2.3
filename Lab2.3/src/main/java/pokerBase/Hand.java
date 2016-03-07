@@ -205,6 +205,21 @@ public class Hand {
 
 	public static boolean isHandStraight(Hand h, HandScore hs) {
 		
+		boolean bHandCheck = false;
+		
+		if(h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).getiCardNbr() == h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).getiCardNbr() + 1 &&
+		h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo()).getiCardNbr() == h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).getiCardNbr() + 1 &&
+		h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).getiCardNbr() == h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo()).getiCardNbr() + 1 &&
+		h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).getiCardNbr() == h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).getiCardNbr() + 1 )
+		{
+			bHandCheck =true;
+			hs.setHandStrength(eHandStrength.Straight.getHandStrength());
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank().getiRankNbr());
+			hs.setLoHand(0);
+			ArrayList<Card> kickers = new ArrayList<Card>();
+			hs.setKickers(kickers);
+		}
+		return bHandCheck;
 	}
 
 	public static boolean isHandThreeOfAKind(Hand h, HandScore hs) {
